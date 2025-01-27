@@ -5,8 +5,8 @@ import jakarta.validation.constraints.Size;
 
 public class AmenityRequest {
     public record Details(
-            @NotBlank(message = "추가할 어메니티를 입력해주세요.")
-            @Size(max = 255, message = "255자 이하로 입력해주세요.")
+            @NotBlank(message = "추가할 편의시설을 입력해주세요.")
+            @Size(max = 255, message = "최대 255자까지 작성 가능합니다.")
             String description
     ) {}
 }
