@@ -34,4 +34,30 @@ public class AmenityController {
                 new AmenityResponse(amenity)
         );
     }
+
+    @GetMapping
+    public ApiResponse<List<AmenityResponse>> getAll() {
+
+        List<AmenityResponse> amenityList = amenityService.findAll()
+                .stream()
+                .map(AmenityResponse::new).toList();
+
+        return ApiResponse.success(
+                "200",
+                "모든 항목이 조회되었습니다.",
+                amenityList
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ApiResponse<AmenityResponse> getById(@PathVariable("id") Long id) {
+
+        Amenity amenity = amenityService.findById(id);
+
+        return ApiResponse.success(
+                "200",
+                "항목이 조회되었습니다.",
+                new AmenityResponse(amenity)
+        );
+    }
 }
