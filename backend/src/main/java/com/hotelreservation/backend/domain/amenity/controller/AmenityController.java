@@ -60,4 +60,23 @@ public class AmenityController {
                 new AmenityResponse(amenity)
         );
     }
+
+    @PutMapping("/{id}")
+    public ApiResponse<AmenityResponse> modify(@PathVariable("id") Long id,
+                                               @RequestBody AmenityRequest.Details details,
+                                               BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            throw new AmenityException(ErrorCode.INVALID_INPUT_VALUE);
+        }
+        Amenity amenity = amenityService.findById(id);
+        amenityService.modify(amenity, details);
+
+        amenityService.flush();
+
+        return ApiResponse.success(
+                "200",
+                "항목이 수정되었습니다.",
+                new AmenityResponse(amenity)
+        );
+    }
 }

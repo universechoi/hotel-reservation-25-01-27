@@ -34,4 +34,13 @@ public class AmenityService {
         return amenityRepository.findById(id)
                 .orElseThrow(() ->new AmenityException(ErrorCode.AMENITY_NOT_FOUND));
     }
+
+    @Transactional
+    public void modify(Amenity amenity, AmenityRequest.Details details) {
+        amenity.setDescription(details.description());
+    }
+
+    public void flush() {
+        amenityRepository.flush();
+    }
 }
