@@ -43,4 +43,8 @@ public class AmenityService {
     public void flush() {
         amenityRepository.flush();
     }
+
+    public void delete(Amenity amenity) {
+        amenityRepository.delete(amenity);
+    }
 }

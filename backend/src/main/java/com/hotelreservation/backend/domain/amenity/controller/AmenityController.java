@@ -79,4 +79,15 @@ public class AmenityController {
                 new AmenityResponse(amenity)
         );
     }
+
+    @DeleteMapping("/{id}")
+    public ApiResponse<Void> delete(@PathVariable("id") Long id) {
+        Amenity amenity = amenityService.findById(id);
+        amenityService.delete(amenity);
+        return ApiResponse.success(
+                "200",
+                "'%s' 항목이 삭제되었습니다.".formatted(amenity.getDescription()),
+                null
+        );
+    }
 }
