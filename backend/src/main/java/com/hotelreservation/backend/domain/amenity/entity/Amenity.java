@@ -12,4 +12,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Amenity extends BaseEntity {
+    @Column(name = "amenity_description", nullable = false)
+    private String description;
 }
