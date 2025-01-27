@@ -1,6 +1,5 @@
 package com.hotelreservation.backend.domain.hotel.room.entity;
 
-import com.hotelreservation.backend.domain.hotel.hotel.entity.Hotel;
 import com.hotelreservation.backend.domain.hotel.room.exception.RoomException;
 import com.hotelreservation.backend.global.entity.BaseEntity;
 import com.hotelreservation.backend.global.exception.ErrorCode;
@@ -57,9 +56,8 @@ public class Room extends BaseEntity {
     @CollectionTable(name = "room_beds", joinColumns = @JoinColumn(name = "room_id"))
     private List<Bed> beds;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hotel_id", nullable = false)
-    private Hotel hotel;
+    @Column(name = "hotel_id", nullable = false)
+    private Long hotelId;
 
     // 항상 적용되어야 하는 규칙은 엔티티 내부에 정의
     // PrePersist: 엔티티가 데이터베이스에 처음 저장되기 전 실행.
